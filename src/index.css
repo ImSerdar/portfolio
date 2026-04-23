@@ -1300,3 +1300,54 @@ section {
     align-self: center;
   }
 }
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    white-space: normal;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .nav-logo {
+    font-size: 1.5rem;
+    padding: 0.3rem 0.6rem;
+    transform: rotate(0deg); /* prevent clipping */
+  }
+
+  section {
+    padding: 3rem 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-content {
+    padding: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .service-card, .process-step, .project-card, .cta-banner {
+    padding: 1.5rem !important;
+  }
+  
+  h1, h2, h3, h4 {
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .sticky-cta {
+    display: none; /* Prevents overlapping core mobile content */
+  }
+
+  .marquee-item {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+}
