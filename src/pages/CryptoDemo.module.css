@@ -1,0 +1,1113 @@
+/* ============================================================
+   CRYPTO DEMO - Trading terminal aesthetic
+   Dark slate + monospace + dense info
+   ============================================================ */
+
+.viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background: #0A0E14;
+  color: #C9D1D9;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.viewport * {
+  box-sizing: border-box;
+}
+
+/* Neutralize global tag rules from index.css that would leak into the demo. */
+.viewport section,
+.viewport nav,
+.viewport footer {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.viewport h1,
+.viewport h2,
+.viewport h3,
+.viewport h4,
+.viewport h5,
+.viewport h6 {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-transform: none;
+}
+
+.viewport button {
+  font-family: inherit;
+}
+
+/* ----- Reveal animation ----- */
+.revealTarget {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.backBadge {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 100000;
+  background: #131820;
+  border: 1px solid #1F2630;
+  color: #C9D1D9;
+  padding: 9px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.18s ease;
+  font-family: ui-monospace, 'JetBrains Mono', 'SF Mono', monospace;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.backBadge:hover {
+  background: #FFB000;
+  color: #0A0E14;
+  border-color: #FFB000;
+}
+
+.appView {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* color helpers */
+.up { color: #26D962; }
+.down { color: #FF4D5A; }
+
+/* monospace typography for data */
+.viewport input,
+.viewport table,
+.tdBold,
+.bookPrice,
+.bookSize,
+.bookTotal,
+.tickerPrice,
+.livePrice,
+.priceChange {
+  font-family: ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-feature-settings: 'tnum';
+}
+
+/* ============== TOP NAV ============== */
+.topNav {
+  background: #131820;
+  border: 1px solid #1F2630;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoMark {
+  color: #FFB000;
+  font-size: 22px;
+  filter: drop-shadow(0 0 8px rgba(255,176,0,0.5));
+}
+
+.logoText {
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  color: #fff;
+}
+
+.logoText span {
+  color: #FFB000;
+  margin: 0 2px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 22px;
+}
+
+.navLink, .navLinkActive {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(201, 209, 217, 0.6);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.navLink:hover { color: #C9D1D9; }
+.navLinkActive { color: #FFB000; position: relative; }
+.navLinkActive::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #FFB000;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.balance {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+.balanceLabel {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(201, 209, 217, 0.45);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.balanceValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.balanceChange {
+  font-size: 10px;
+  color: #26D962;
+  margin-top: 1px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #0A0E14;
+  border: 1px solid #1F2630;
+  padding: 7px 10px;
+  width: 200px;
+}
+
+.searchIcon {
+  color: rgba(201, 209, 217, 0.4);
+  font-size: 14px;
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  color: #C9D1D9;
+  font-size: 12px;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+}
+
+.searchInput::placeholder { color: rgba(201, 209, 217, 0.3); }
+
+.connDot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #26D962;
+  letter-spacing: 0.12em;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+.connDot span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #26D962;
+  box-shadow: 0 0 8px #26D962;
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ============== TICKER STRIP ============== */
+.tickerStrip {
+  background: #131820;
+  border: 1px solid #1F2630;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.tickerInner {
+  display: flex;
+  gap: 28px;
+  white-space: nowrap;
+  animation: scrollTicker 50s linear infinite;
+  width: max-content;
+}
+
+@keyframes scrollTicker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.tickerItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  border-right: 1px solid rgba(31, 38, 48, 0.6);
+}
+
+.tickerSym {
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+
+.tickerPrice {
+  font-size: 12px;
+  color: #C9D1D9;
+}
+
+.tickerChange {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+/* ============== PANELS ============== */
+.panel {
+  background: #131820;
+  border: 1px solid #1F2630;
+}
+
+.panelHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #1F2630;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panelHead h3 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  color: #fff;
+}
+
+.linkText {
+  font-size: 11px;
+  color: #FFB000;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.linkText:hover { text-decoration: underline; }
+
+.balancePill {
+  font-size: 10px;
+  color: rgba(201, 209, 217, 0.55);
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+/* ============== CHART SECTION ============== */
+.chartSection {
+  background: #131820;
+  border: 1px solid #1F2630;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 18px;
+  border-bottom: 1px solid #1F2630;
+  flex-wrap: wrap;
+}
+
+.pairInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pairButton {
+  background: #0A0E14;
+  border: 1px solid #1F2630;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.pairButton:hover { border-color: #FFB000; }
+
+.pairName {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.pairChevron {
+  color: rgba(201, 209, 217, 0.5);
+  font-size: 10px;
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.livePrice {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.priceChange {
+  font-size: 11px;
+  color: #26D962;
+}
+
+.timeframes {
+  display: flex;
+  gap: 2px;
+  background: #0A0E14;
+  border: 1px solid #1F2630;
+  padding: 2px;
+  margin-left: auto;
+}
+
+.tfButton {
+  background: transparent;
+  border: none;
+  color: rgba(201, 209, 217, 0.55);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tfButton:hover { color: #C9D1D9; }
+
+.tfActive {
+  background: #FFB000;
+  color: #0A0E14;
+}
+
+.chartTools {
+  display: flex;
+  gap: 8px;
+}
+
+.toolBtn {
+  font-size: 11px;
+  padding: 6px 10px;
+  background: #0A0E14;
+  border: 1px solid #1F2630;
+  color: rgba(201, 209, 217, 0.7);
+  cursor: pointer;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+.toolBtn:hover { color: #FFB000; border-color: #FFB000; }
+
+.chartCanvas {
+  padding: 12px;
+  background: #0A0E14;
+}
+
+.chartSvg {
+  display: block;
+}
+
+.chartFooter {
+  display: flex;
+  gap: 32px;
+  padding: 12px 18px;
+  border-top: 1px solid #1F2630;
+  flex-wrap: wrap;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric span {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(201, 209, 217, 0.45);
+  text-transform: uppercase;
+}
+
+.metric strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+/* ============== ORDER BOOK + TRADE ROW ============== */
+.bookTradeRow {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 12px;
+}
+
+/* ============== ORDER BOOK ============== */
+.bookGroup {
+  display: flex;
+  gap: 4px;
+  background: #0A0E14;
+  border: 1px solid #1F2630;
+  padding: 2px;
+}
+
+.bookOpt, .bookOptActive {
+  font-size: 10px;
+  padding: 4px 10px;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  cursor: pointer;
+  color: rgba(201, 209, 217, 0.55);
+}
+
+.bookOptActive {
+  background: #1F2630;
+  color: #FFB000;
+}
+
+.bookGrid {
+  display: flex;
+  flex-direction: column;
+}
+
+.bookLabels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 8px 16px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(201, 209, 217, 0.45);
+  border-bottom: 1px solid #1F2630;
+}
+
+.bookLabels span:nth-child(2),
+.bookLabels span:nth-child(3) { text-align: right; }
+
+.asksList, .bidsList {
+  padding: 4px 0;
+}
+
+.bookRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  padding: 4px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.bookRow:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.bookFill {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.bookPrice {
+  font-weight: 600;
+  position: relative;
+}
+
+.bookSize, .bookTotal {
+  text-align: right;
+  color: rgba(201, 209, 217, 0.75);
+  position: relative;
+}
+
+.spreadRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: #0A0E14;
+  border-top: 1px solid #1F2630;
+  border-bottom: 1px solid #1F2630;
+  font-size: 11px;
+}
+
+.spreadLabel {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(201, 209, 217, 0.5);
+  font-size: 9px;
+}
+
+.spreadVal {
+  font-weight: 700;
+  color: #fff;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+.spreadPct {
+  color: rgba(201, 209, 217, 0.55);
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+
+/* ============== TRADE PANEL ============== */
+.tradeTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 12px 16px 0;
+}
+
+.sideBtn {
+  background: transparent;
+  border: 1px solid #1F2630;
+  padding: 10px;
+  color: rgba(201, 209, 217, 0.55);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.sideBtnBuy {
+  background: rgba(38, 217, 98, 0.12);
+  border-color: #26D962;
+  color: #26D962;
+}
+
+.sideBtnSell {
+  background: rgba(255, 77, 90, 0.12);
+  border-color: #FF4D5A;
+  color: #FF4D5A;
+}
+
+.orderTypeRow {
+  display: flex;
+  gap: 0;
+  padding: 12px 16px;
+}
+
+.typeBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #1F2630;
+  padding: 7px;
+  color: rgba(201, 209, 217, 0.55);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  transition: all 0.15s;
+}
+
+.typeBtn + .typeBtn { border-left: none; }
+.typeActive { background: #1F2630; color: #FFB000; }
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 16px 12px;
+}
+
+.formRow label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(201, 209, 217, 0.5);
+}
+
+.inputWrap {
+  display: flex;
+  background: #0A0E14;
+  border: 1px solid #1F2630;
+  align-items: center;
+}
+
+.inputWrap:focus-within { border-color: #FFB000; }
+
+.formInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 9px 12px;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-weight: 600;
+}
+
+.inputSuffix {
+  padding: 0 12px;
+  font-size: 11px;
+  color: rgba(201, 209, 217, 0.5);
+  letter-spacing: 0.04em;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+.percentRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 0 16px 12px;
+}
+
+.pctBtn {
+  background: #0A0E14;
+  border: 1px solid #1F2630;
+  padding: 6px;
+  font-size: 10px;
+  color: rgba(201, 209, 217, 0.7);
+  cursor: pointer;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.pctBtn:hover {
+  border-color: #FFB000;
+  color: #FFB000;
+}
+
+.leverageRow {
+  padding: 0 16px 16px;
+}
+
+.leverageLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.leverageLabel span {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(201, 209, 217, 0.5);
+}
+
+.leverageVal {
+  font-size: 14px;
+  color: #FFB000;
+  font-weight: 700;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+.slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #1F2630;
+  outline: none;
+  margin: 8px 0;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #FFB000;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 176, 0, 0.5);
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #FFB000;
+  cursor: pointer;
+  border: none;
+}
+
+.leverageMarks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: rgba(201, 209, 217, 0.4);
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+.submitBtn {
+  width: calc(100% - 32px);
+  margin: 0 16px 16px;
+  padding: 14px;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  color: #0A0E14;
+  transition: filter 0.15s;
+}
+
+.submitBtn:hover { filter: brightness(1.1); }
+
+.submitBuy { background: #26D962; }
+.submitSell { background: #FF4D5A; }
+
+.tradeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #1F2630;
+}
+
+.tradeInfo > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.tradeInfo span {
+  color: rgba(201, 209, 217, 0.55);
+}
+
+.tradeInfo strong {
+  font-weight: 600;
+  color: #fff;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+/* ============== TABLES ============== */
+.tabsInline {
+  display: flex;
+  gap: 16px;
+}
+
+.tabInline, .tabActiveInline {
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  color: rgba(201, 209, 217, 0.5);
+}
+
+.tabInline:hover { color: #C9D1D9; }
+.tabActiveInline { color: #FFB000; }
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(201, 209, 217, 0.5);
+  font-weight: 600;
+  border-bottom: 1px solid #1F2630;
+  background: #0A0E14;
+}
+
+.table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(31, 38, 48, 0.5);
+}
+
+.table tbody tr {
+  transition: background 0.1s;
+}
+
+.table tbody tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+.tdBold {
+  font-weight: 700;
+  color: #fff;
+}
+
+.sideLong {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  background: rgba(38, 217, 98, 0.15);
+  color: #26D962;
+}
+
+.sideShort {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  background: rgba(255, 77, 90, 0.15);
+  color: #FF4D5A;
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid #1F2630;
+  padding: 5px 12px;
+  color: rgba(201, 209, 217, 0.7);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.closeBtn:hover {
+  border-color: #FF4D5A;
+  color: #FF4D5A;
+}
+
+/* ============== BOTTOM ROW (watchlist + news) ============== */
+.bottomRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.assetCell {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.assetSym {
+  font-weight: 700;
+  color: #fff;
+  font-size: 12px;
+}
+
+.assetName {
+  font-size: 10px;
+  color: rgba(201, 209, 217, 0.5);
+}
+
+.newsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.newsItem {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(31, 38, 48, 0.5);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.newsItem:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+.newsItem:last-child { border-bottom: none; }
+
+.newsTitle {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.newsMeta {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: rgba(201, 209, 217, 0.5);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+}
+
+.newsSource {
+  color: #FFB000;
+  font-weight: 600;
+}
+
+/* ============== FOOTER ============== */
+.footer {
+  background: #131820;
+  border: 1px solid #1F2630;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footerNote {
+  font-size: 10px;
+  color: rgba(201, 209, 217, 0.45);
+  letter-spacing: 0.04em;
+}
+
+.footerRight {
+  display: flex;
+  gap: 24px;
+  font-size: 10px;
+  color: rgba(201, 209, 217, 0.55);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footerRight em {
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 1100px) {
+  .bookTradeRow {
+    grid-template-columns: 1fr;
+  }
+  .bottomRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .topNav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .navLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .navLinks {
+    flex-wrap: wrap;
+  }
+  .navRight {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .balance {
+    text-align: left;
+  }
+  .searchBox { width: 100%; }
+  .chartHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .timeframes {
+    margin-left: 0;
+    overflow-x: auto;
+  }
+  .chartFooter {
+    gap: 16px;
+  }
+  .metric span { font-size: 8px; }
+  .metric strong { font-size: 12px; }
+  .navLinkActive::after { display: none; }
+}
+
+@media (max-width: 540px) {
+  .appView {
+    padding: 12px 8px;
+    gap: 8px;
+  }
+  .livePrice { font-size: 18px; }
+  .pairButton { padding: 6px 10px; }
+  .table th, .table td { padding: 8px; font-size: 11px; }
+  .footerRight {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

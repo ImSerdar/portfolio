@@ -1,0 +1,807 @@
+.viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background-color: #fbfbfd;
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.backBadge {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 100000;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s;
+}
+
+.backBadge:hover {
+  background: rgba(0, 0, 0, 1);
+}
+
+.appView {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px 0;
+}
+
+/* ─── Nav ─── */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d2d2d7;
+  margin-bottom: 60px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.links {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  color: #515154;
+}
+
+.links span {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.links span:hover {
+  color: #1d1d1f;
+}
+
+.navActions {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+  color: #515154;
+}
+
+.navIcon {
+  cursor: pointer;
+}
+
+/* ─── Hero ─── */
+.hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+.hero p {
+  font-size: 24px;
+  color: #86868b;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.heroActions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.heroBtn {
+  background: #0071e3;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.heroBtn:hover {
+  background: #0077ed;
+}
+
+.heroBtnOutline {
+  background: none;
+  color: #0071e3;
+  border: none;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.heroBtnOutline:hover {
+  text-decoration: underline;
+}
+
+/* ─── Featured Spotlight ─── */
+.spotlight {
+  background: #000;
+  border-radius: 28px;
+  padding: 60px;
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+
+.spotlightInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.spotlightVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.deviceFrame {
+  width: 320px;
+  height: 220px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 2px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.deviceFrame::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+}
+
+.deviceScreen {
+  width: 90%;
+  height: 80%;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  border-radius: 6px;
+}
+
+.spotlightContent {
+  color: #fff;
+}
+
+.newBadge {
+  display: inline-block;
+  background: #f56300;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.spotlightContent h2 {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: none;
+  letter-spacing: -1px;
+}
+
+.spotlightTagline {
+  font-size: 20px;
+  color: #86868b;
+  margin-bottom: 30px;
+}
+
+.specList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.specList li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 15px;
+}
+
+.specLabel {
+  color: #86868b;
+}
+
+.specValue {
+  color: #fff;
+  font-weight: 500;
+}
+
+.colorPicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.colorDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.colorDotActive {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 2px #000, 0 0 0 4px #0071e3;
+}
+
+.colorName {
+  font-size: 13px;
+  color: #86868b;
+  margin-left: 8px;
+}
+
+.spotlightPrice {
+  font-size: 18px;
+  color: #86868b;
+}
+
+/* ─── Product Grid ─── */
+.productSection {
+  margin-bottom: 80px;
+}
+
+.sectionTitle {
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: 40px;
+  text-transform: none;
+}
+
+.sectionSub {
+  color: #86868b;
+  font-size: 18px;
+  margin-top: -30px;
+  margin-bottom: 40px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.productCard {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.productTag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f5f5f7;
+  color: #86868b;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 250px;
+  background: #fbfbfd;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+.productCard h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.price {
+  color: #86868b;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #0071e3;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #0077ed;
+}
+
+.btnLink {
+  background: none;
+  border: none;
+  color: #0071e3;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 12px;
+  padding: 0;
+}
+
+.btnLink:hover {
+  text-decoration: underline;
+}
+
+/* ─── Comparison ─── */
+.comparisonBanner {
+  background: #f5f5f7;
+  border-radius: 28px;
+  padding: 60px 40px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.comparisonBanner h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-transform: none;
+  letter-spacing: -0.5px;
+}
+
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.comparisonCol {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.comparisonThumb {
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(145deg, #e8e8ed, #d2d2d7);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.comparisonCol h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: none;
+}
+
+.comparisonCol p {
+  font-size: 14px;
+  color: #86868b;
+  margin-bottom: 16px;
+}
+
+.comparisonCol ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comparisonCol li {
+  padding: 6px 0;
+  font-size: 14px;
+  color: #515154;
+  border-bottom: 1px solid #f0f0f2;
+}
+
+.comparisonCol li::before {
+  content: '✓ ';
+  color: #34c759;
+  font-weight: 700;
+}
+
+/* ─── Promo ─── */
+.promoSection {
+  background: #000;
+  color: #fff;
+  border-radius: 28px;
+  padding: 80px 40px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.promoSection h2 {
+  font-size: 48px;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+.promoSection p {
+  font-size: 20px;
+  color: #86868b;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.promoBtn {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.promoBtn:hover {
+  transform: scale(1.05);
+}
+
+/* ─── Reviews ─── */
+.reviewsSection {
+  margin-bottom: 80px;
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.reviewCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.stars {
+  color: #ff9500;
+  font-size: 18px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.reviewText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1d1d1f;
+  margin-bottom: 16px;
+}
+
+.reviewAuthor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reviewName {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.reviewProduct {
+  color: #86868b;
+  font-size: 13px;
+}
+
+/* ─── Accessories ─── */
+.accessoriesSection {
+  margin-bottom: 80px;
+}
+
+.accessoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.accessoryCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.accessoryCard:hover {
+  transform: translateY(-4px);
+}
+
+.accessoryThumb {
+  width: 100%;
+  height: 120px;
+  background: #f5f5f7;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.accessoryCard h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-transform: none;
+}
+
+.accessoryCard p {
+  font-size: 13px;
+  color: #86868b;
+  margin-bottom: 10px;
+}
+
+.accessoryPrice {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+/* ─── Trade-in ─── */
+.tradeIn {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-radius: 28px;
+  padding: 60px 40px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.tradeInContent h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: none;
+  color: #14532d;
+  letter-spacing: -0.5px;
+}
+
+.tradeInContent p {
+  color: #166534;
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+/* ─── Newsletter ─── */
+.newsletter {
+  text-align: center;
+  padding: 60px 40px;
+  margin-bottom: 60px;
+  border-top: 1px solid #d2d2d7;
+}
+
+.newsletter h3 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: none;
+}
+
+.newsletter p {
+  color: #86868b;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.newsletterForm {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid #d2d2d7;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.emailInput:focus {
+  border-color: #0071e3;
+}
+
+.newsletterForm .btn {
+  width: auto;
+  padding: 12px 32px;
+}
+
+/* ─── Footer ─── */
+.footer {
+  border-top: 1px solid #d2d2d7;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footerGrid h5 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 12px;
+  text-transform: none;
+}
+
+.footerGrid ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerGrid li {
+  font-size: 12px;
+  color: #515154;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.footerGrid li:hover {
+  text-decoration: underline;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  color: #86868b;
+  font-size: 12px;
+  border-top: 1px solid #d2d2d7;
+  padding-top: 20px;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.footerLinks span {
+  cursor: pointer;
+}
+
+.footerLinks span:hover {
+  text-decoration: underline;
+}
+
+/* ─── Scroll Reveal ─── */
+.revealTarget {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .navActions {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .spotlightInner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .spotlight {
+    padding: 40px 24px;
+  }
+
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .accessoriesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
