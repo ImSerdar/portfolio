@@ -982,8 +982,17 @@
 
 @media (max-width: 540px) {
   .appView {
-    padding: 70px 16px 32px;
+    padding: 100px 16px 32px;
     gap: 24px;
+  }
+
+  .topNav {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
   }
 
   .topNavLeft .userName {
