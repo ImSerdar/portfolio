@@ -161,7 +161,7 @@ const FitnessDemo = () => {
         {/* Hero — activity rings */}
         <section className={styles.heroRings}>
           <div className={styles.ringsVisual}>
-            <svg width="320" height="320" className={styles.ringsSvg}>
+            <svg width="320" height="320" viewBox="0 0 320 320" className={styles.ringsSvg}>
               <ActivityRing percent={78} color="#7CFF6B" radius={150} stroke={18} />
               <ActivityRing percent={62} color="#FF6B35" radius={120} stroke={18} />
               <ActivityRing percent={91} color="#FF6BB5" radius={90} stroke={18} />
