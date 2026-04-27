@@ -78,8 +78,8 @@
 
 .backBadge {
   position: fixed;
-  bottom: 24px;
-  left: 24px;
+  top: 20px;
+  left: 20px;
   z-index: 100000;
   background: #0E0E0E;
   color: #F4F1EC;
@@ -131,7 +131,7 @@
 
 .navLinks {
   display: flex;
-  gap: 28px;
+  gap: 36px;
 }
 
 .navLink {
@@ -1066,7 +1066,7 @@
   }
   .navLinks {
     flex-wrap: wrap;
-    gap: 18px;
+    gap: 24px;
   }
   .marquee {
     margin: 0 -20px;

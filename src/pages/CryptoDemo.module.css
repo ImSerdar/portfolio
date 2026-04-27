@@ -64,8 +64,8 @@
 
 .backBadge {
   position: fixed;
-  bottom: 18px;
-  left: 18px;
+  top: 20px;
+  left: 20px;
   z-index: 100000;
   background: #131820;
   border: 1px solid #1F2630;
