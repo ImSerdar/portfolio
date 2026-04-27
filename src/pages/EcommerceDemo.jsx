@@ -53,10 +53,10 @@ const EcommerceDemo = () => {
   ];
 
   const accessories = [
-    { name: "Aura Keyboard", price: "$199", desc: "Magic keys with Touch ID" },
-    { name: "Aura Display", price: "$1,599", desc: "27-inch 5K Retina" },
-    { name: "Aura Trackpad", price: "$149", desc: "Force Touch surface" },
-    { name: "Aura Charger", price: "$49", desc: "35W Dual USB-C" }
+    { name: "Aura Keyboard", price: "$199", desc: "Magic keys with Touch ID", image: "/aura_keyboard.png" },
+    { name: "Aura Display", price: "$1,599", desc: "27-inch 5K Retina", image: "/aura_display.png" },
+    { name: "Aura Trackpad", price: "$149", desc: "Force Touch surface", image: "/aura_trackpad.png" },
+    { name: "Aura Charger", price: "$49", desc: "35W Dual USB-C", image: "/aura_charger.png" }
   ];
 
   return (
@@ -68,12 +68,12 @@ const EcommerceDemo = () => {
         <nav className={styles.nav}>
           <div className={styles.logo}>Aura</div>
           <div className={styles.links}>
-            <span>Mac</span>
-            <span>iPad</span>
-            <span>iPhone</span>
-            <span>Watch</span>
-            <span>AirPods</span>
-            <span>Accessories</span>
+            <span>AuraBooks</span>
+            <span>AuraPads</span>
+            <span>AuraPhones</span>
+            <span>AuraTime</span>
+            <span>AuraBuds</span>
+            <span>Gear</span>
           </div>
           <div className={styles.navActions}>
             <span className={styles.navIcon}>&#x1F50D;</span>
@@ -150,7 +150,9 @@ const EcommerceDemo = () => {
           <h2>Which Aura is right for you?</h2>
           <div className={styles.comparisonGrid}>
             <div className={styles.comparisonCol}>
-              <div className={styles.comparisonThumb}></div>
+              <div className={styles.comparisonThumb}>
+                <img src="/aura_pro.png" alt="Aura Pro" style={{width: '100%', height: '100%', objectFit: 'contain', padding: '10px'}} />
+              </div>
               <h4>Aura Pro</h4>
               <p>For demanding professional workflows</p>
               <ul>
@@ -160,7 +162,9 @@ const EcommerceDemo = () => {
               </ul>
             </div>
             <div className={styles.comparisonCol}>
-              <div className={styles.comparisonThumb}></div>
+              <div className={styles.comparisonThumb}>
+                <img src="/aura_air.png" alt="Aura Air" style={{width: '100%', height: '100%', objectFit: 'contain', padding: '10px'}} />
+              </div>
               <h4>Aura Air</h4>
               <p>For effortless mobility every day</p>
               <ul>
@@ -170,7 +174,9 @@ const EcommerceDemo = () => {
               </ul>
             </div>
             <div className={styles.comparisonCol}>
-              <div className={styles.comparisonThumb}></div>
+              <div className={styles.comparisonThumb}>
+                <img src="/aura_mini.png" alt="Aura Mini" style={{width: '100%', height: '100%', objectFit: 'contain', padding: '10px'}} />
+              </div>
               <h4>Aura Mini</h4>
               <p>For a powerful compact desktop</p>
               <ul>
@@ -214,7 +220,9 @@ const EcommerceDemo = () => {
           <div className={styles.accessoriesGrid}>
             {accessories.map((a, i) => (
               <div key={i} className={styles.accessoryCard}>
-                <div className={styles.accessoryThumb}></div>
+                <div className={styles.accessoryThumb}>
+                  <img src={a.image} alt={a.name} style={{width: '100%', height: '100%', objectFit: 'contain', padding: '10px'}} />
+                </div>
                 <h4>{a.name}</h4>
                 <p>{a.desc}</p>
                 <span className={styles.accessoryPrice}>{a.price}</span>
@@ -248,11 +256,11 @@ const EcommerceDemo = () => {
             <div>
               <h5>Shop and Learn</h5>
               <ul>
-                <li>Mac</li>
-                <li>iPad</li>
-                <li>iPhone</li>
-                <li>Watch</li>
-                <li>Accessories</li>
+                <li>AuraBooks</li>
+                <li>AuraPads</li>
+                <li>AuraPhones</li>
+                <li>AuraTime</li>
+                <li>Gear</li>
               </ul>
             </div>
             <div>
