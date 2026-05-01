@@ -159,21 +159,21 @@ export const PORTFOLIO_DATA = {
         name: "Gold Star Fade",
         url: "https://goldstarfade.ca",
         role: "Built from scratch & Currently managing",
-        technologies: ["WordPress", "PHP", "Vanilla CSS"]
+        technologies: ["WordPress", "Elementor"]
       },
       {
         id: 2,
         name: "Argus Carriers",
         url: "https://arguscarriers.com",
         role: "Built from scratch & Currently managing",
-        technologies: ["WordPress", "Custom Theme", "JavaScript"]
+        technologies: ["WordPress", "Elementor"]
       },
       {
         id: 3,
         name: "Coquitlam Family Chiropractic",
         url: "https://coquitlamfamilychiropractic.com",
         role: "Currently managing",
-        technologies: ["WordPress", "SEO", "Maintenance"]
+        technologies: ["Next.js", "React"]
       }
     ]
   },
