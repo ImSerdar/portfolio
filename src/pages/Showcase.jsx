@@ -21,6 +21,15 @@ const Showcase = ({ data }) => {
             <div className="showcase-item-info">
               <h2>{site.name}</h2>
               <span className="tag showcase-role">{site.role}</span>
+              
+              {site.technologies && (
+                <div className="project-tags" style={{ justifyContent: 'center', marginBottom: '1.5rem' }}>
+                  {site.technologies.map(tech => (
+                    <span key={tech} className="tag">{tech}</span>
+                  ))}
+                </div>
+              )}
+
               <a href={site.url} target="_blank" rel="noreferrer" className="project-link showcase-link">
                 Visit Live Content
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

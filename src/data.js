@@ -15,7 +15,7 @@ export const PORTFOLIO_DATA = {
   hero: {
     badge: "Available for new projects",
     headline: "I solve technical problems.",
-    tagline: "I build fast websites, fix broken ones, and automate what's eating your time. No jargon, no bloat — just results that ship.",
+    tagline: "I build fast websites, fix broken ones, and automate what's eating your time. As a WordPress specialist, I deliver results that ship — no jargon, no bloat.",
     primaryCta: { text: "Let's Talk", href: "/#contact" },
     secondaryCta: { text: "See My Work", href: "/#work" },
     image: "/hero_abstract.png"
@@ -158,19 +158,22 @@ export const PORTFOLIO_DATA = {
         id: 1,
         name: "Gold Star Fade",
         url: "https://goldstarfade.ca",
-        role: "Built from scratch"
+        role: "Built from scratch & Currently managing",
+        technologies: ["WordPress", "PHP", "Vanilla CSS"]
       },
       {
         id: 2,
         name: "Argus Carriers",
         url: "https://arguscarriers.com",
-        role: "Built from scratch"
+        role: "Built from scratch & Currently managing",
+        technologies: ["WordPress", "Custom Theme", "JavaScript"]
       },
       {
         id: 3,
         name: "Coquitlam Family Chiropractic",
         url: "https://coquitlamfamilychiropractic.com",
-        role: "Currently managing"
+        role: "Currently managing",
+        technologies: ["WordPress", "SEO", "Maintenance"]
       }
     ]
   },
@@ -178,9 +181,9 @@ export const PORTFOLIO_DATA = {
     title: "Get In Touch",
     headline: "Have a project in mind?",
     text: "Tell me what you're building or what's broken. I reply within 24 hours — no auto-responders, no sales funnels.",
-    email: "hello@example.com",
-    primaryCta: { text: "Email Me", href: "mailto:hello@example.com" },
-    secondaryCta: { text: "Book a 15-min Call", href: "mailto:hello@example.com?subject=15-min%20Call%20Request" },
+    email: "serdara@gmx.com",
+    primaryCta: { text: "Email Me", href: "mailto:serdara@gmx.com" },
+    secondaryCta: { text: "Book a 15-min Call", href: "mailto:serdara@gmx.com?subject=15-min%20Call%20Request" },
     availability: "Available for freelance opportunities",
     replyTime: "Replies within 24 hours"
   }

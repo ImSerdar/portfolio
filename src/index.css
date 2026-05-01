@@ -578,6 +578,7 @@ section {
 
 .showcase-link {
   font-size: 1.2rem;
+  align-self: center;
 }
 
 /* Device Mockups (BRUTALIST STYLING) */
@@ -669,7 +670,8 @@ section {
 
 .mockup-mobile-screen {
   background: #FFF;
-  border: var(--brutal-border);
+  border: 10px solid #111;
+  border-radius: 32px;
   aspect-ratio: 9/19;
   position: relative;
   overflow: hidden;
@@ -679,13 +681,11 @@ section {
 .mockup-mobile-screen::before {
   content: '';
   position: absolute;
-  top: 0; left: 50%;
+  top: 10px; left: 50%;
   transform: translateX(-50%);
-  width: 50%; height: 25px;
-  background: #FFF;
-  border-bottom: var(--brutal-border);
-  border-left: var(--brutal-border);
-  border-right: var(--brutal-border);
+  width: 35%; height: 25px;
+  background: #111;
+  border-radius: 20px;
   z-index: 10;
 }
 
