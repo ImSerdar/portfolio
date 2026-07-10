@@ -17,7 +17,7 @@ const Navbar = ({ data, scrolled, scrollDirection }) => {
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''} ${scrollDirection === 'down' ? 'hidden' : ''}`}>
       <div className="nav-logo">
-        <Link to="/">{data.logo}</Link>
+        <Link to="/">Serdar<span>.</span></Link>
       </div>
       
       <button 

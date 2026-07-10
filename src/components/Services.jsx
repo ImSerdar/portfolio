@@ -74,7 +74,7 @@ const Services = ({ data }) => {
         {data.items.map((item, i) => (
           <div
             key={item.id}
-            className="service-card card-hidden"
+            className="service-card glass card-hidden"
             ref={(el) => (cardsRef.current[i] = el)}
             style={{ transitionDelay: `${i * 120}ms` }}
           >

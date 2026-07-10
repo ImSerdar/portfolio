@@ -52,7 +52,7 @@ const Work = ({ data }) => {
         {data.projects.map((project, i) => (
           <div
             key={project.id}
-            className="project-card card-hidden"
+            className="project-card glass card-hidden"
             ref={(el) => (cardsRef.current[i] = el)}
             style={{ transitionDelay: `${i * 150}ms` }}
           >

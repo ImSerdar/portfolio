@@ -34,7 +34,9 @@ const Hero = ({ data }) => {
               {data.badge}
             </div>
           )}
-          <h1>{data.headline}</h1>
+          <h1>
+            <span className="text-gradient">I solve</span><br/>technical problems.
+          </h1>
           <p>{data.tagline}</p>
           <div className="hero-cta-group">
             <a href={data.primaryCta?.href || data.ctaLink} className="cta-button">
@@ -49,7 +51,7 @@ const Hero = ({ data }) => {
         </div>
         {data.image && (
           <div className="hero-image-wrapper">
-            <img src={data.image} alt="Hero Abstract" className="hero-image" />
+            <img src={data.image} alt="Hero abstract" className="hero-image" />
           </div>
         )}
       </div>
