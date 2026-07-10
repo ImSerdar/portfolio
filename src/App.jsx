@@ -9,6 +9,8 @@ import CorporateDemo from './pages/CorporateDemo';
 import FitnessDemo from './pages/FitnessDemo';
 import CryptoDemo from './pages/CryptoDemo';
 import AgencyDemo from './pages/AgencyDemo';
+import { Canvas } from '@react-three/fiber';
+import Scene from './components/Scene';
 import { PORTFOLIO_DATA } from './data';
 
 function App() {
@@ -39,7 +41,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="bg-blobs"></div>
+      {/* 3D Background */}
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, pointerEvents: 'none' }}>
+        <Canvas>
+          <Scene />
+        </Canvas>
+      </div>
+
       <div className="app-container">
         <Routes>
           <Route path="/" element={

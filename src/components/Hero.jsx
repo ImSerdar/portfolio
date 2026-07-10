@@ -27,18 +27,18 @@ const Hero = ({ data }) => {
     <section id="hero" className="hero">
       <div className="hero-glow"></div>
       <div className="hero-layout" ref={heroRef}>
-        <div className="hero-content">
+        <div className="hero-content" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', alignItems: 'center' }}>
           {data.badge && (
-            <div className="hero-badge">
+            <div className="hero-badge" style={{ alignSelf: 'center' }}>
               <span className="hero-badge-dot"></span>
               {data.badge}
             </div>
           )}
           <h1>
-            <span className="text-gradient">I solve</span><br/>technical problems.
+            {data.headline || <><span className="text-gradient">I solve</span><br/>technical problems.</>}
           </h1>
-          <p>{data.tagline}</p>
-          <div className="hero-cta-group">
+          <p style={{ margin: '0 auto 2.5rem auto' }}>{data.tagline}</p>
+          <div className="hero-cta-group" style={{ justifyContent: 'center' }}>
             <a href={data.primaryCta?.href || data.ctaLink} className="cta-button">
               {data.primaryCta?.text || data.ctaText}
             </a>
@@ -49,11 +49,6 @@ const Hero = ({ data }) => {
             )}
           </div>
         </div>
-        {data.image && (
-          <div className="hero-image-wrapper">
-            <img src={data.image} alt="Hero abstract" className="hero-image" />
-          </div>
-        )}
       </div>
     </section>
   );
