@@ -11,6 +11,7 @@
   
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', monospace;
   
   --glass-bg: rgba(10, 15, 29, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
@@ -55,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 a {
@@ -84,6 +85,7 @@ section {
   -webkit-text-fill-color: transparent;
   display: inline-block;
   font-weight: 800;
+  letter-spacing: -0.04em;
 }
 
 /* Utilities */
@@ -156,6 +158,8 @@ section {
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .hero h1 {
@@ -168,8 +172,9 @@ section {
 .hero p {
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   color: var(--text-secondary);
-  margin-bottom: 2.5rem;
+  margin: 0 0 2.5rem 0;
   max-width: 500px;
+  text-align: left;
 }
 
 .hero-badge {
@@ -178,9 +183,10 @@ section {
   gap: 0.5rem;
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
+  font-family: var(--font-mono);
   font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   border: 1px solid var(--glass-border);
@@ -208,6 +214,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: flex-start;
 }
 
 .cta-button {
@@ -356,9 +363,28 @@ section {
 .menu-toggle span:last-child { top: 26px; }
 
 /* Services */
-.services-grid {
+.services-grid, .work-grid, .process-grid {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1.5rem;
+  gap: 2rem;
+  width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.services-grid::-webkit-scrollbar,
+.work-grid::-webkit-scrollbar,
+.process-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
 }
 
@@ -367,6 +393,8 @@ section {
   transition: all var(--transition-smooth);
   display: flex;
   flex-direction: column;
+  flex: 0 0 350px;
+  scroll-snap-align: start;
 }
 
 .service-card:hover {
@@ -428,11 +456,6 @@ section {
 }
 
 /* Work */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
-}
 
 .project-card {
   display: flex;
@@ -442,6 +465,8 @@ section {
   transition: all var(--transition-smooth);
   background: var(--bg-secondary);
   border: 1px solid var(--glass-border);
+  flex: 0 0 400px;
+  scroll-snap-align: start;
 }
 
 .project-card:hover {
@@ -489,8 +514,18 @@ section {
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-radius: 4px;
 }
 
 .tag {
@@ -523,23 +558,20 @@ section {
 }
 
 /* Process Section */
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
 
 .process-step {
   padding: 2.5rem;
   position: relative;
   transition: all var(--transition-smooth);
+  flex: 0 0 300px;
+  scroll-snap-align: start;
 }
 
 .process-number {
-  font-family: var(--font-heading);
-  font-size: 3rem;
+  font-family: var(--font-mono);
+  font-size: 4rem;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.03);
   position: absolute;
   top: 1rem;
   right: 1.5rem;
@@ -665,8 +697,12 @@ section {
 
 /* Contact */
 .contact-section {
-  text-align: center;
+  text-align: left;
   padding: 8rem 2rem;
+}
+
+.contact-section .glass {
+  text-align: left;
 }
 
 .contact-headline {
@@ -683,7 +719,7 @@ section {
 
 .contact-cta-group {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   flex-wrap: wrap;
   margin-bottom: 3rem;
@@ -948,3 +984,163 @@ section {
     transform: scale(0.35); /* Will need JS scaling ideally, but this is fallback */
   }
 }
+
+/* ============================================================================
+   Virtual Scroll, CSS 3D Perspective Overlay & Navigation Dot Indicators
+   ============================================================================ */
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.section-wrapper {
+  transform-style: preserve-3d;
+}
+
+.section-content-container {
+  pointer-events: auto; /* enable click/hover on active section contents */
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Custom Scrollbar for scrollable glass cards */
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  display: none;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  display: none;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  display: none;
+}
+
+/* Dot Indicators */
+.dot-indicators {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.dot-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+.dot-indicator:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(1.15);
+}
+
+.dot-indicator.active {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan);
+  transform: scale(1.3);
+}
+
+/* Highlight Active Navbar Links */
+.nav-links a.active {
+  color: var(--text-primary) !important;
+}
+
+.nav-links a.active::after {
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+}
+
+/* Glassmorphism Overrides */
+.glass {
+  background: rgba(10, 15, 29, 0.55) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) !important;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Mobile Responsiveness for Virtual Scroll Overlays */
+@media (max-width: 768px) {
+  .overlay-container {
+    perspective: 800px;
+  }
+  
+  .section-wrapper {
+    padding: 1.5rem !important;
+    justify-content: center !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .section-content-container {
+    max-height: 80vh;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  .services-grid, .work-grid, .process-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+    gap: 1rem !important;
+    width: 100%;
+  }
+  .service-card, .project-card, .process-step {
+    flex: 0 0 85% !important;
+    scroll-snap-align: center;
+  }
+
+  .dot-indicators {
+    right: 1rem;
+    gap: 0.75rem;
+  }
+
+  .contact-section {
+    text-align: center;
+  }
+  
+  .contact-section .glass {
+    text-align: center;
+  }
+
+  .contact-cta-group {
+    justify-content: center;
+  }
+}
+

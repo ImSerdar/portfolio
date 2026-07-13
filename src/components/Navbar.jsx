@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const Navbar = ({ data, scrolled, scrollDirection }) => {
+const Navbar = ({ data, activeSection, onNavClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -11,13 +11,27 @@ const Navbar = ({ data, scrolled, scrollDirection }) => {
 
   const handleNavClick = (e, href) => {
     setMobileMenuOpen(false);
-    // If it's a relative hash, let's use default behavior which we handle differently
+    if (onNavClick) {
+      onNavClick(e, href);
+    }
+  };
+
+  const isLinkActive = (href) => {
+    if (location.pathname === '/showcase' && href === '/showcase') return true;
+    if (location.pathname !== '/') return false;
+    
+    if (href === '/#services' && activeSection === 2) return true;
+    if (href === '/#process' && activeSection === 3) return true;
+    if (href === '/#work' && activeSection === 4) return true;
+    if (href === '/#contact' && activeSection === 6) return true;
+    
+    return false;
   };
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''} ${scrollDirection === 'down' ? 'hidden' : ''}`}>
+    <header className="navbar scrolled">
       <div className="nav-logo">
-        <Link to="/">Serdar<span>.</span></Link>
+        <Link to="/" onClick={(e) => handleNavClick(e, '/')}>Serdar<span>.</span></Link>
       </div>
       
       <button 
@@ -33,7 +47,11 @@ const Navbar = ({ data, scrolled, scrollDirection }) => {
       <ul className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         {data.navLinks.map((link, index) => (
           <li key={index}>
-            <a href={link.href} onClick={(e) => handleNavClick(e, link.href)}>
+            <a 
+              href={link.href} 
+              onClick={(e) => handleNavClick(e, link.href)}
+              className={isLinkActive(link.href) ? 'active' : ''}
+            >
               {link.name}
             </a>
           </li>
@@ -44,3 +62,4 @@ const Navbar = ({ data, scrolled, scrollDirection }) => {
 };
 
 export default Navbar;
+

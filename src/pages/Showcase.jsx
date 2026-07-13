@@ -16,7 +16,7 @@ const Showcase = ({ data }) => {
       </section>
 
       <div className="showcase-projects">
-        {data.sites.map((site, index) => (
+        {data.sites.map((site) => (
           <section key={site.id} className="showcase-item glass">
             <div className="showcase-item-info">
               <h2>{site.name}</h2>

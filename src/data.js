@@ -13,91 +13,92 @@ export const PORTFOLIO_DATA = {
     ]
   },
   hero: {
-    badge: "Available for new projects",
-    headline: "I solve technical problems.",
-    tagline: "I build fast websites, fix broken ones, and automate what's eating your time. As a WordPress specialist, I deliver results that ship — no jargon, no bloat.",
+    badge: "STATUS: ACCEPTING NEW PROJECTS",
+    headline: "Full-Stack Engineering & System Architecture.",
+    tagline: "Building high-performance web applications, resilient backend architectures, and immersive digital experiences for companies that demand technical excellence.",
     primaryCta: { text: "Let's Talk", href: "/#contact" },
     secondaryCta: { text: "See My Work", href: "/#work" },
     image: "/hero_abstract.png"
   },
   stats: {
+    title: "System Telemetry",
     items: [
-      { value: "< 24h", label: "Reply Time" },
-      { value: "5+", label: "Years Building" },
-      { value: "100%", label: "Direct Contact" },
-      { value: "Fixed", label: "Transparent Pricing" }
+      { value: "99.9%", label: "Uptime SLA" },
+      { value: "< 50ms", label: "API Latency" },
+      { value: "100+", label: "Production Deployments" },
+      { value: "Zero", label: "Compromises" }
     ]
   },
   services: {
-    title: "My Services",
+    title: "Core Competencies",
     items: [
       {
         id: 1,
-        title: "Web Development",
-        description: "From idea to launch. Fast, responsive sites built to convert — not just to exist.",
+        title: "Digital Architecture",
+        description: "Engineering robust, ultra-fast web platforms using state-of-the-art frameworks. Designed for maximum performance, SEO dominance, and unparalleled user engagement.",
         features: [
-          "Custom design, mobile-first",
+          "Immersive 3D & WebGL Experiences",
           "Lightning-fast load times",
-          "SEO-ready out of the box",
-          "Launch in weeks, not months"
+          "Scalable modern tech stacks",
+          "Bespoke UI/UX implementation"
         ]
       },
       {
         id: 2,
-        title: "Website Management",
-        description: "Keep your site running while you focus on the business. I handle the technical grind.",
+        title: "Platform Operations",
+        description: "Proactive maintenance, security hardening, and performance optimization. Ensuring your digital infrastructure remains resilient and scales seamlessly.",
         features: [
-          "Uptime monitoring & alerts",
-          "Security patches & backups",
-          "Content & feature updates",
-          "Performance tuning"
+          "Zero-downtime deployments",
+          "Security patches & auditing",
+          "Continuous feature iteration",
+          "Performance & core web vitals"
         ]
       },
       {
         id: 3,
-        title: "Automation & Tools",
-        description: "Stop doing the same task twice. Let me build the tool that saves you hours every week.",
+        title: "Workflow Engineering",
+        description: "Developing bespoke internal tooling and automation pipelines. Eliminating operational friction and transforming complex workflows into automated processes.",
         features: [
-          "API integrations",
-          "Data pipelines & scrapers",
-          "Scheduled jobs & alerts",
-          "Internal dashboards"
+          "Custom API integrations",
+          "Complex data pipelines",
+          "Automated cloud infrastructure",
+          "Executive dashboards"
         ]
       }
     ]
   },
   process: {
-    title: "How I Work",
-    subtitle: "No surprises. No agency games. Just a clear path from call to launch.",
+    title: "Engagement Model",
+    subtitle: "A refined, strategic approach to technical delivery. Moving seamlessly from conceptual architecture to production scale.",
     steps: [
       {
         id: "01",
-        title: "Discovery Call",
-        description: "Free 15-minute call. We talk through what you need and whether I'm the right fit."
+        title: "Discovery & System Design",
+        description: "An executive-level consultation to dissect your objectives, evaluate technical feasibility, and map out architectural requirements."
       },
       {
         id: "02",
-        title: "Scope & Quote",
-        description: "You get a written plan with fixed pricing and a clear timeline. No hidden fees."
+        title: "Architectural Prototyping",
+        description: "A meticulously crafted blueprint outlining the technical stack, precise deliverables, and transparent investment structuring."
       },
       {
         id: "03",
-        title: "Build & Iterate",
-        description: "Weekly progress updates. You see the work as it happens and can course-correct early."
+        title: "Agile Implementation",
+        description: "Iterative, high-velocity development cycles with transparent communication. Rapid prototyping ensuring flawless execution."
       },
       {
         id: "04",
-        title: "Launch & Support",
-        description: "Deploy, train your team, and 30 days of included post-launch support. You own everything."
+        title: "CI/CD & Scale",
+        description: "Seamless transition to production environments accompanied by comprehensive documentation and dedicated post-launch support."
       }
     ]
   },
   work: {
-    title: "Sample Builds",
+    title: "Featured Case Studies",
     projects: [
       {
         id: 1,
-        title: "E\u2011Commerce Platform",
+        title: "Enterprise Commerce Platform",
         description: "A full-stack online store featuring responsive design, secure payment gateways, and scalable backend infrastructure.",
         tags: ["React", "Node.js", "Stripe"],
         link: "/demo/ecommerce",
@@ -105,7 +106,7 @@ export const PORTFOLIO_DATA = {
       },
       {
         id: 2,
-        title: "Workflow Automation Tool",
+        title: "Intelligent Automation Pipeline",
         description: "An internal tool that automates repetitive data entry tasks, saving clients countless hours each week.",
         tags: ["Python", "API", "Automation"],
         link: "/demo/workflow",
@@ -113,7 +114,7 @@ export const PORTFOLIO_DATA = {
       },
       {
         id: 3,
-        title: "Corporate Website Redesign",
+        title: "Global Brand Architecture",
         description: "A complete overhaul of a client's legacy site, drastically improving UX, accessibility, and SEO performance.",
         tags: ["Next.js", "Design System", "CMS"],
         link: "/demo/corporate",
@@ -151,8 +152,8 @@ export const PORTFOLIO_DATA = {
     button: { text: "Book a Call", href: "/#contact" }
   },
   showcase: {
-    title: "Websites I've Built & Manage",
-    description: "Check out these live previews of client websites on different devices.",
+    title: "Production Deployments",
+    description: "A curated selection of live production environments engineered and maintained for global clientele.",
     sites: [
       {
         id: 1,
@@ -178,13 +179,13 @@ export const PORTFOLIO_DATA = {
     ]
   },
   contact: {
-    title: "Get In Touch",
-    headline: "Have a project in mind?",
-    text: "Tell me what you're building or what's broken. I reply within 24 hours — no auto-responders, no sales funnels.",
+    title: "Initiate Dialogue",
+    headline: "Ready to elevate your digital presence?",
+    text: "Reach out to discuss technical architecture, complex integrations, or bespoke development solutions. Operating at the highest standards of engineering.",
     email: "serdara@gmx.com",
-    primaryCta: { text: "Email Me", href: "mailto:serdara@gmx.com" },
-    secondaryCta: { text: "Book a 15-min Call", href: "mailto:serdara@gmx.com?subject=15-min%20Call%20Request" },
-    availability: "Available for freelance opportunities",
-    replyTime: "Replies within 24 hours"
+    primaryCta: { text: "Initialize Contact", href: "mailto:serdara@gmx.com" },
+    secondaryCta: { text: "Request Consultation", href: "mailto:serdara@gmx.com?subject=Strategic%20Consultation%20Request" },
+    availability: "Accepting select technical engagements",
+    replyTime: "Priority response queue"
   }
 };

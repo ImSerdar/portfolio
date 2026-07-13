@@ -150,14 +150,22 @@ const CryptoDemo = () => {
 
   // Generate stable candles
   const candles = React.useMemo(() => {
+    const seedRandom = (seed) => {
+      let s = seed;
+      return () => {
+        s = (s * 9301 + 49297) % 233280;
+        return s / 233280;
+      };
+    };
+    const random = seedRandom(42);
     const out = [];
     let p = 66200;
     for (let i = 0; i < 48; i++) {
       const open = p;
-      const change = (Math.sin(i / 3) + Math.cos(i / 2.3) + (Math.random() - 0.5) * 1.5) * 80;
+      const change = (Math.sin(i / 3) + Math.cos(i / 2.3) + (random() - 0.5) * 1.5) * 80;
       const close = open + change;
-      const high = Math.max(open, close) + Math.random() * 60;
-      const low = Math.min(open, close) - Math.random() * 60;
+      const high = Math.max(open, close) + random() * 60;
+      const low = Math.min(open, close) - random() * 60;
       out.push({ open, close, high, low });
       p = close;
     }
