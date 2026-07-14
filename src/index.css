@@ -1007,7 +1007,10 @@ section {
 }
 
 .section-content-container {
-  pointer-events: auto; /* enable click/hover on active section contents */
+  /* Inherit pointer-events from the section wrapper: the active section's
+     wrapper sets 'auto', inactive (faded/invisible) ones set 'none'. Forcing
+     'auto' here re-enabled clicks on hidden stacked sections, causing buttons
+     to fire from sections you can't see. */
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;

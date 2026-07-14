@@ -56,7 +56,7 @@ function MainPortfolioView() {
         '#services': 2,
         '#process': 3,
         '#work': 4,
-        '#contact': 6
+        '#contact': 7
       };
       const targetIdx = indexMap[hash];
       if (targetIdx !== undefined) {
@@ -75,7 +75,7 @@ function MainPortfolioView() {
         services: 2,
         process: 3,
         work: 4,
-        contact: 6
+        contact: 7
       };
       const targetIdx = indexMap[sectionName];
       if (targetIdx !== undefined) {

@@ -28,10 +28,9 @@ function SectionWrapper({ scrollSmooth, index, children, align = 'center' }) {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    return scrollSmooth.on("change", (latest) => {
-      const isActive = Math.abs(latest - index) < 0.45;
-      setActive(isActive);
-    });
+    const update = (latest) => setActive(Math.abs(latest - index) < 0.45);
+    update(scrollSmooth.get()); // initialize on mount so the landing section is interactive before any scroll
+    return scrollSmooth.on("change", update);
   }, [scrollSmooth, index]);
 
   const getWrapperStyles = () => {
@@ -93,10 +92,10 @@ export default function DOMOverlay({ scrollSmooth, scrollTarget }) {
             {PORTFOLIO_DATA.hero.tagline}
           </p>
           <div className="hero-cta-group animate-on-load" style={{ animationDelay: '0.3s' }}>
-            <a 
-              href={PORTFOLIO_DATA.hero.primaryCta.href} 
+            <a
+              href={PORTFOLIO_DATA.hero.primaryCta.href}
               className="cta-button"
-              onClick={(e) => handleCtaClick(e, 6)} // Go to contact (6)
+              onClick={(e) => handleCtaClick(e, 7)} // Go to Contact (section 7)
             >
               {PORTFOLIO_DATA.hero.primaryCta.text}
             </a>

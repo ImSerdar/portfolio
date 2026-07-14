@@ -23,7 +23,7 @@ const Navbar = ({ data, activeSection, onNavClick }) => {
     if (href === '/#services' && activeSection === 2) return true;
     if (href === '/#process' && activeSection === 3) return true;
     if (href === '/#work' && activeSection === 4) return true;
-    if (href === '/#contact' && activeSection === 6) return true;
+    if (href === '/#contact' && activeSection === 7) return true;
     
     return false;
   };
