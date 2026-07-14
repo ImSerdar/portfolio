@@ -50,20 +50,34 @@ const DeviceMockup = ({ url, name }) => {
                 <br /> <a href={url} target="_blank" rel="noreferrer">Visit Live Site</a></span>
               </div>
             ) : (
-              <iframe
-                src={url}
-                title={`${name} Laptop Preview`}
-                onError={handleIframeError}
-                sandbox="allow-scripts allow-same-origin"
-                style={{
-                  width: LAPTOP_WIDTH,
-                  height: LAPTOP_HEIGHT,
-                  border: 'none',
-                  transform: laptopScale !== null ? `scale(${laptopScale})` : undefined,
-                  transformOrigin: 'top left',
-                  visibility: laptopScale !== null ? 'visible' : 'hidden',
-                }}
-              />
+              <>
+                <iframe
+                  src={url}
+                  title={`${name} Laptop Preview`}
+                  onError={handleIframeError}
+                  loading="lazy"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  sandbox="allow-scripts allow-same-origin"
+                  style={{
+                    width: LAPTOP_WIDTH,
+                    height: LAPTOP_HEIGHT,
+                    border: 'none',
+                    transform: laptopScale !== null ? `scale(${laptopScale})` : undefined,
+                    transformOrigin: 'top left',
+                    visibility: laptopScale !== null ? 'visible' : 'hidden',
+                  }}
+                />
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mockup-link-overlay"
+                  aria-label={`Open ${name} live site in a new tab`}
+                >
+                  <span className="mockup-link-hint">View Live &#8599;</span>
+                </a>
+              </>
             )}
           </div>
         </div>
@@ -75,19 +89,31 @@ const DeviceMockup = ({ url, name }) => {
         <div className="mockup-mobile-screen">
           <div className="iframe-container" ref={mobileContainerRef}>
             {!iframeError && (
-              <iframe
-                src={url}
-                title={`${name} Mobile Preview`}
-                sandbox="allow-scripts allow-same-origin"
-                style={{
-                  width: MOBILE_WIDTH,
-                  height: MOBILE_HEIGHT,
-                  border: 'none',
-                  transform: mobileScale !== null ? `scale(${mobileScale})` : undefined,
-                  transformOrigin: 'top left',
-                  visibility: mobileScale !== null ? 'visible' : 'hidden',
-                }}
-              />
+              <>
+                <iframe
+                  src={url}
+                  title={`${name} Mobile Preview`}
+                  loading="lazy"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  sandbox="allow-scripts allow-same-origin"
+                  style={{
+                    width: MOBILE_WIDTH,
+                    height: MOBILE_HEIGHT,
+                    border: 'none',
+                    transform: mobileScale !== null ? `scale(${mobileScale})` : undefined,
+                    transformOrigin: 'top left',
+                    visibility: mobileScale !== null ? 'visible' : 'hidden',
+                  }}
+                />
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mockup-link-overlay"
+                  aria-label={`Open ${name} live site in a new tab`}
+                />
+              </>
             )}
           </div>
         </div>

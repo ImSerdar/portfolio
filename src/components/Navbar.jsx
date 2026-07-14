@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ data, scrolled, scrollDirection }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+    setMobileMenuOpen((open) => !open);
   };
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = () => {
     setMobileMenuOpen(false);
-    // If it's a relative hash, let's use default behavior which we handle differently
   };
+
+  // Lock background scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', mobileMenuOpen);
+    return () => document.body.classList.remove('menu-open');
+  }, [mobileMenuOpen]);
+
+  // Keep the navbar visible whenever the menu is open, even on scroll-down
+  const hidden = scrollDirection === 'down' && !mobileMenuOpen;
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''} ${scrollDirection === 'down' ? 'hidden' : ''}`}>
+    <header className={`navbar ${scrolled ? 'scrolled' : ''} ${hidden ? 'hidden' : ''}`}>
       <div className="nav-logo">
         <Link to="/">{data.logo}</Link>
       </div>

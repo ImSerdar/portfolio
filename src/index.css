@@ -29,6 +29,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  -webkit-text-size-adjust: 100%; /* Stop iOS from auto-inflating text on rotate */
+  text-size-adjust: 100%;
 }
 
 body {
@@ -40,6 +42,12 @@ body {
   -webkit-font-smoothing: antialiased;
   background-image: radial-gradient(#111 1px, transparent 1px);
   background-size: 30px 30px;
+  -webkit-tap-highlight-color: transparent; /* No grey flash on tap (iOS) */
+}
+
+/* Lock scroll behind the open mobile menu */
+body.menu-open {
+  overflow: hidden;
 }
 
 /* Clear out the old dark mode blobs */
@@ -98,6 +106,10 @@ section {
   position: fixed;
   top: 0; left: 0; right: 0;
   padding: 1.5rem 2rem;
+  /* Respect the notch / Dynamic Island and rounded corners on iPhone */
+  padding-top: max(1.5rem, env(safe-area-inset-top));
+  padding-left: max(2rem, env(safe-area-inset-left));
+  padding-right: max(2rem, env(safe-area-inset-right));
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -194,10 +206,24 @@ section {
 .menu-toggle span:nth-child(2) { top: 20px; left: 8px; width: 80%;}
 .menu-toggle span:last-child { top: 28px; width: 60%; left: 8px;}
 
+/* Morph hamburger into an X when the menu is open */
+.menu-toggle.open span:first-child {
+  top: 20px; width: 80%;
+  transform: rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:last-child {
+  top: 20px; width: 80%;
+  transform: rotate(-45deg);
+}
+
 
 /* Hero Section */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh; /* Tracks iOS Safari's collapsing toolbar */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -524,6 +550,7 @@ section {
 .showcase-page {
   padding-top: 120px;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .showcase-header {
@@ -699,6 +726,50 @@ section {
 .mockup-mobile-screen iframe {
   border: none;
   transform-origin: top left;
+  /* Preview only: never let the embedded site capture taps or trap page scroll */
+  pointer-events: none;
+}
+
+/* Tappable overlay turns the whole mockup into a link to the live site */
+.mockup-link-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mockup-link-hint {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  color: #111;
+  background: var(--accent-yellow);
+  border: var(--brutal-border);
+  box-shadow: 4px 4px 0px #111;
+  padding: 0.6rem 1.2rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+@media (hover: hover) {
+  .mockup-laptop-screen:hover .mockup-link-hint {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Touch devices can't hover, so surface the affordance permanently */
+@media (hover: none) {
+  .mockup-link-hint {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .iframe-fallback {
@@ -1001,8 +1072,8 @@ section {
 /* Sticky Floating CTA */
 .sticky-cta {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1rem));
+  right: max(2rem, calc(env(safe-area-inset-right) + 1rem));
   background: var(--accent-color);
   color: #FFF;
   font-family: var(--font-heading);
@@ -1109,6 +1180,7 @@ section {
   background: var(--text-primary);
   color: var(--bg-primary);
   padding: 3rem 2rem;
+  padding-bottom: max(3rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   max-width: none;
   border-top: var(--brutal-border);
 }
@@ -1174,13 +1246,46 @@ section {
   border-top: 1px solid #333;
 }
 
+/* Touch press feedback — mirrors the :hover "press" for tap devices */
+.cta-button:active,
+.cta-banner-btn:active,
+.project-link:active,
+.showcase-link:active,
+.mockup-link-overlay:active .mockup-link-hint {
+  transform: translate(4px, 4px);
+  box-shadow: var(--brutal-shadow-hover);
+}
+
+.service-card:active,
+.project-card:active,
+.process-step:active {
+  transform: translate(4px, 4px);
+  box-shadow: var(--brutal-shadow-hover);
+}
+
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .menu-toggle { display: block; }
   
   .nav-links {
     position: fixed;
-    top: 80px; left: 0; width: 100%;
+    top: calc(env(safe-area-inset-top, 0px) + 80px);
+    left: 0; width: 100%;
+    max-height: calc(100dvh - env(safe-area-inset-top, 0px) - 80px);
+    overflow-y: auto;
     background: #FFF;
     flex-direction: column; gap: 0; padding: 0;
     clip-path: circle(0% at 100% 0%);
